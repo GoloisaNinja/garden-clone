@@ -22,7 +22,11 @@ export default class Header extends Component {
                         <HoverImage className='header-icon' alt='search icon' src='/wishlist_header_icon.png' hoverSrc='/wishlist_icon_Y.png' />
                         Wishlist
                     </NavLink>
-                    <NavLink className='header-link' to='/'>
+                    <NavLink className='header-link' to='/about_us'>
+                        <HoverImage className='header-icon' alt='search icon' src='' hoverSrc='' />
+                        About Us
+                    </NavLink>
+                    <NavLink className='header-link' onClick={this.props.handleLogout} to='/'>
                         <HoverImage className='header-icon' alt='search icon' src='/logout_header_icon.png' hoverSrc='/logout_icon_Y.png' />
                         Log Out
                     </NavLink>
