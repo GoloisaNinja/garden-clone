@@ -8,11 +8,11 @@ import {
 import PrivateRoute from './Components/PrivateRoute.js';
 import Search from './Search/Search.js';
 import Home from './Home/Home.js';
+import AboutUs from './AboutUs/AboutUs.js';
 import Header from './Components/Header.js';
 import Detail from './Detail/Detail.js';
 import Wishlist from './Wishlist/Wishlist.js';
 import MyGarden from './MyGarden/MyGarden.js';
-import MyGardenDetail from './MyGarden/MyGardenDetail.js';
 
 export default class App extends Component {
   render() {
@@ -46,10 +46,10 @@ export default class App extends Component {
               exact
               component={MyGarden}
             />
-            <PrivateRoute
-              path="/my_garden/:id"
+            <Route
+              path="/about_us"
               exact
-              component={MyGardenDetail}
+              component={AboutUs}
             />
           </Switch>
         </Router>
