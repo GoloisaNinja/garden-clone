@@ -13,43 +13,75 @@ import Header from './Components/Header.js';
 import Detail from './Detail/Detail.js';
 import Wishlist from './Wishlist/Wishlist.js';
 import MyGarden from './MyGarden/MyGarden.js';
+import { getUserFromLocalStorage, setUserInLocalStorage } from './Utils/LocalStorage.js';
 
 export default class App extends Component {
+
+  state = {
+    user: getUserFromLocalStorage()
+  }
+  handleUserChange = (user) => {
+    this.setState({ user })
+    setUserInLocalStorage(user);
+  }
+  handleLogout = () => {
+    this.handleUserChange();
+  }
+
   render() {
     return (
       <div>
         <Router>
-          <Header />
+          <Header
+            handleLogout={this.handleLogout}
+          />
           <Switch>
             <Route
               path="/"
               exact
-              component={Home}
+              render={(routerProps) =>
+                <Home handleUserChange={this.handleUserChange} {...routerProps}
+                />}
             />
             <PrivateRoute
               path="/search"
-              exact
-              component={Search}
+              exact token={this.state.user && this.state.user.token}
+              render={(routerProps) =>
+                <Search user={this.state.user}
+                  {...routerProps}
+                />}
             />
             <PrivateRoute
               path="/detail/:id"
-              exact
-              component={Detail}
+              exact token={this.state.user && this.state.user.token}
+              render={(routerProps) =>
+                <Detail user={this.state.user}
+                  {...routerProps}
+                />}
             />
             <PrivateRoute
               path="/wishlist"
-              exact
-              component={Wishlist}
+              exact token={this.state.user && this.state.user.token}
+              render={(routerProps) =>
+                <Wishlist user={this.state.user}
+                  {...routerProps}
+                />}
             />
             <PrivateRoute
               path="/my_garden"
-              exact
-              component={MyGarden}
+              exact token={this.state.user && this.state.user.token}
+              render={(routerProps) =>
+                <MyGarden user={this.state.user}
+                  {...routerProps}
+                />}
             />
             <Route
               path="/about_us"
               exact
-              component={AboutUs}
+              render={(routerProps) =>
+                <AboutUs
+                  {...routerProps}
+                />}
             />
           </Switch>
         </Router>
