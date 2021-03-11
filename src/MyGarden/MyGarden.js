@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Spinner from '../Components/Spinner';
 import {
-  getEdibles,
   getWishlist,
   getGarden,
   addToWishlist,
+  getAllPlantInfo
 } from '../Utils/ApiUtils.js';
 import '../plantList.css';
 
@@ -13,30 +13,26 @@ export default class MyGarden extends Component {
   state = {
     userWishlist: [],
     userGarden: [],
-    ediblePlants: [],
-    filteredPlants: [],
-    searchPlantByName: '',
-    lightFilter: '',
-    ediblePartFilter: '',
-    veggieFilter: '',
     loading: false,
+    detailsGarden: []
   };
 
   componentDidMount = async () => {
     this.setState({ loading: true });
-    const edibleArray = await getEdibles(this.props.user.token);
 
     const wishlist = await getWishlist(this.props.user.token);
 
     const garden = await getGarden(this.props.user.token);
+
+    const gardenDetails = await getAllPlantInfo(garden, this.props.user.token);
+
     this.setState({
       userGarden: garden,
       userWishlist: wishlist,
-      ediblePlants: edibleArray,
       loading: false,
+      detailsGarden: gardenDetails
     });
   };
-
 
   handleAddToWishlist = async (plant) => {
     await addToWishlist(this.props.user.token, plant.id);
@@ -57,13 +53,7 @@ export default class MyGarden extends Component {
     return inWishlist;
   };
 
-  isInGarden = (plant) => {
-    const inGarden = this.state.userGarden.find(
-      (myPlant) => myPlant.main_species_id === plant.id
-    );
 
-    return inGarden;
-  };
 
   render() {
     return (
@@ -73,7 +63,7 @@ export default class MyGarden extends Component {
           {this.state.loading ? (
             <Spinner />
           ) : (
-            this.state.ediblePlants.map((plant, i) => (
+            this.state.detailsGarden.map((plant, i) => (
               <div key={`${plant.common_name}-${i}`} className='plantCard'>
                 <img src={plant.image_url} className='plantImage' alt='plant' />
                 <p className='plantName'>{plant.common_name}</p>

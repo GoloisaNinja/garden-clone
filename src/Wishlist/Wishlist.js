@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Spinner from '../Components/Spinner';
 import {
-  getEdibles,
   getWishlist,
   getGarden,
   addToGarden,
+  getAllPlantInfo,
 } from '../Utils/ApiUtils.js';
 import '../plantList.css';
 
@@ -12,28 +12,25 @@ export default class Wishlist extends Component {
     state = {
         userWishlist: [],
         userGarden: [],
-        ediblePlants: [],
-        filteredPlants: [],
-        searchPlantByName: '',
-        lightFilter: '',
-        ediblePartFilter: '',
-        veggieFilter: '',
         loading: false,
+        detailsWishlist: []
       };
     
       componentDidMount = async () => {
         this.setState({ loading: true });
-        const edibleArray = await getEdibles(this.props.user.token);
-    
-        const wishlist = await getWishlist(this.props.user.token);
-    
-        const garden = await getGarden(this.props.user.token);
-        this.setState({
-          userGarden: garden,
-          userWishlist: wishlist,
-          ediblePlants: edibleArray,
-          loading: false,
-        });
+
+    const wishlist = await getWishlist(this.props.user.token);
+
+    const garden = await getGarden(this.props.user.token);
+
+    const wishlistDetails = await getAllPlantInfo(wishlist, this.props.user.token);
+
+    this.setState({
+      userGarden: garden,
+      userWishlist: wishlist,
+      loading: false,
+      detailsWishlist: wishlistDetails
+    });
       };
     
       handleAddToGarden = async (plant) => {
@@ -71,7 +68,7 @@ export default class Wishlist extends Component {
               {this.state.loading ? (
                 <Spinner />
               ) : (
-                this.state.ediblePlants.map((plant, i) => (
+                this.state.detailsWishlist.map((plant, i) => (
                   <div key={`${plant.common_name}-${i}`} className='plantCard'>
                     <img src={plant.image_url} className='plantImage' alt='plant' />
                     <p className='plantName'>{plant.common_name}</p>

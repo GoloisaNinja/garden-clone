@@ -17,7 +17,6 @@ export async function loginUser(email, password) {
   return response.body;
 }
 
-
 export async function getEdibles(token) {
     const response = await request
         .get(`${URL}/api/edible_search`)
@@ -40,8 +39,13 @@ export async function getFilteredSearches(token, part, vegetable, light) {
         .set('Authorization', token)
 
     return response.body.data;
-
 }
+
+export async function getAllPlantInfo(plantArray, token) {
+  const response = await Promise.all( plantArray.map(plant => getPlantDetails(token, plant.main_species_id)));
+
+  return response;
+  };
 
 export async function addToWishlist(token, main_species_id) {
   const response = await request
@@ -57,7 +61,6 @@ export async function getWishlist(token) {
     const response = await request
         .get(`${URL}/api/wishlist`)
         .set('Authorization', token)
-
 
   return response.body;
 }
@@ -78,7 +81,6 @@ export async function addToGarden(token, main_species_id, plant_name) {
         .post(`${URL}/api/my_garden`)
         .send({ main_species_id, plant_name })
         .set('Authorization', token)
-
 
   return response.body;
 }
