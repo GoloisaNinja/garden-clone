@@ -75,7 +75,6 @@ export default class Search extends Component {
     this.setState({ searchResults: filteredPlantsResults, loading: false });
   };
 
-  // calling it plant.id here since the endpoints will use main_species_id on the back end (we tested to make sure it works)
   handleAddToGarden = async (plant) => {
     await addToGarden(this.props.user.token, plant.id, plant.common_name);
 
@@ -195,7 +194,7 @@ export default class Search extends Component {
                         className='btn-no'
                         disabled
                         src='/wishlist_icon_Y.png'
-                        alt='wislist'
+                        alt='wishlist'
                       />
                     ) : (
                         <img

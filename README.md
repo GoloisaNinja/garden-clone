@@ -14,6 +14,7 @@
     As a new gardener, it can be tough to know where to start when looking to grow your food. GainfulGarden gives these beginner gardeners an easy way to get started by allowing searching/filtering plants that will grow well in their environment, tracking plants they want to buy, and taking notes on plants they own to refer back to later.
 
 # Semantic versioning, beginning with version 1.0.0 and incremented as changes are made
+    
 
 
 # A list of any libraries, frameworks, or packages that your application requires in order to properly function
