@@ -83,3 +83,12 @@ input{
     border: solid 1px #3b5a41;
     border-radius: 4px;
 }
+
+.spinner{
+    width: 150px;
+    height: 150px;
+}
+
+.searchSide{
+    width: 600px;
+}

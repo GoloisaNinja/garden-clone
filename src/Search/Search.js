@@ -113,7 +113,7 @@ export default class Search extends Component {
   render() {
     return (
       <div className='searchPage'>
-        <form>
+        <div className='searchSide'>
           <label>
             Search By Name
             <input
@@ -164,7 +164,7 @@ export default class Search extends Component {
           </label>
           <br />
           <button onClick={this.handleFilterSubmit}>Search Results</button>
-        </form>
+        </div>
         <div className='plantList'>
           {this.state.loading ? (
             <Spinner />
