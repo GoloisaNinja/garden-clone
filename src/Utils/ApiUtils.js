@@ -3,19 +3,20 @@ import request from 'superagent';
 const URL = 'http://gainfulgarden.herokuapp.com';
 
 export async function signUpUser(name, email, password) {
-    const response = await request
-        .post(`${URL}/auth/signup`)
-        .send({ name, email, password })
-    return response.body;
+  const response = await request
+    .post(`${URL}/auth/signup`)
+    .send({ name, email, password });
+  return response.body;
 }
 
 export async function loginUser(email, password) {
-    const response = await request
-        .post(`${URL}/auth/signin`)
-        .send({ email, password })
+  const response = await request
+    .post(`${URL}/auth/signin`)
+    .send({ email, password });
 
-    return response.body;
+  return response.body;
 }
+
 
 export async function getEdibles(token) {
     const response = await request
@@ -39,32 +40,38 @@ export async function getFilteredSearches(token, part, vegetable, light) {
         .set('Authorization', token)
 
     return response.body.data;
+
 }
 
 export async function addToWishlist(token, main_species_id) {
-    const response = await request
-        .post(`${URL}/api/wishlist`)
-        .send({ main_species_id })
-        .set('Authorization', token)
+  const response = await request
+    .post(`${URL}/api/wishlist`)
+    .send({ main_species_id })
+    .set('Authorization', token);
 
-    return response.body;
+  return response.body;
 }
+
 
 export async function getWishlist(token) {
     const response = await request
         .get(`${URL}/api/wishlist`)
         .set('Authorization', token)
 
-    return response.body;
+
+  return response.body;
 }
+
 
 export async function deleteWishlistPlant(token, plantId) {
     const response = await request
         .delete(`${URL}/api/wishlist/${plantId}`)
         .set('Authorization', token)
 
-    return response.body;
+
+  return response.body;
 }
+
 
 export async function addToGarden(token, main_species_id, plant_name) {
     const response = await request
@@ -72,7 +79,8 @@ export async function addToGarden(token, main_species_id, plant_name) {
         .send({ main_species_id, plant_name })
         .set('Authorization', token)
 
-    return response.body;
+
+  return response.body;
 }
 
 export async function getGarden(token) {
@@ -80,8 +88,10 @@ export async function getGarden(token) {
         .get(`${URL}/api/my_garden`)
         .set('Authorization', token)
 
-    return response.body;
+
+  return response.body;
 }
+
 
 export async function deleteGardenPlant(token, plantId) {
     const response = await request
@@ -89,15 +99,17 @@ export async function deleteGardenPlant(token, plantId) {
         .set('Authorization', token)
 
     return response.body;
+
 }
 
 export async function getPlantDetails(token, main_species_id) {
-    const response = await request
-        .get(`${URL}/api/plant_detail/${main_species_id}`)
-        .set('Authorization', token)
+  const response = await request
+    .get(`${URL}/api/plant_detail/${main_species_id}`)
+    .set('Authorization', token);
 
-    return response.body.data;
+  return response.body.data;
 }
+
 
 export async function addNotes(token, main_species_id, date, note) {
     const response = await request
@@ -114,4 +126,5 @@ export async function getNotes(token, id) {
         .set('Authorization', token)
 
     return response.body;
+
 }

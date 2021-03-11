@@ -8,6 +8,7 @@ import {
 } from '../Utils/ApiUtils.js';
 import '../plantList.css';
 
+
 export default class MyGarden extends Component {
   state = {
     userWishlist: [],
@@ -66,6 +67,7 @@ export default class MyGarden extends Component {
 
   render() {
     return (
+
       <div className='myGardenPage'>
         <div className='plantList'>
           {this.state.loading ? (
@@ -103,6 +105,7 @@ export default class MyGarden extends Component {
               </div>
             ))
           )}
+
         </div>
       </div>
     );
