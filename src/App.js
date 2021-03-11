@@ -16,7 +16,6 @@ import MyGarden from './MyGarden/MyGarden.js';
 import { getUserFromLocalStorage, setUserInLocalStorage } from './Utils/LocalStorage.js';
 
 export default class App extends Component {
-
   state = {
     user: getUserFromLocalStorage()
   }
