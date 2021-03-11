@@ -12,3 +12,7 @@ yellow: #f9ed78
 h1{
   font-family: 'Poiret One';
 }
+
+.toastBody {
+  background-color: #f9ed78;
+}
