@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {
   getEdibles,
   getFilteredSearches,
@@ -26,10 +25,10 @@ export default class Search extends Component {
   componentDidMount = async () => {
     const edibleArray = await getEdibles(this.props.user.token);
 
-    const wishlist = await getWishlist(this.props.user.token)
+    const wishlist = await getWishlist(this.props.user.token);
 
-    const garden = await getGarden(this.props.user.token)
-    this.setState({ userGarden: garden, userWishlist: wishlist, ediblePlants:edibleArray})
+    const garden = await getGarden(this.props.user.token);
+    this.setState({ userGarden: garden, userWishlist: wishlist, ediblePlants:edibleArray});
   };
 
   handleSearchNameChange = (e) => {
@@ -71,7 +70,7 @@ export default class Search extends Component {
   handleAddToGarden = async (plant) => {
     await addToGarden(this.props.user.token, plant.id, plant.common_name);
 
-    const garden = getGarden(this.props.user.token)
+    const garden = await getGarden(this.props.user.token)
     this.setState({userGarden: garden})
   }
 
@@ -101,8 +100,6 @@ export default class Search extends Component {
   render() {
     return (
       <div>
-        <h1>I am Search Page, Hear me ROAR.</h1>
-
         <form>
           <label>
             Search By Name
@@ -144,8 +141,6 @@ export default class Search extends Component {
           <button onClick={this.handleFilterSubmit}>Search Results</button>
         </form>
         <div className='plantList'>
-          <Link to='/detail/:id'>Detail Page</Link>
-          Plants will show up here
                 {
                     this.state.ediblePlants.map((plant, i) => 
                       <div key={`${plant.common_name}-${i}`} className="plantCard">
@@ -160,7 +155,6 @@ export default class Search extends Component {
                           ? <p>'In your Wishlist!'</p> 
                           : <button onClick={() => this.handleAddToWishlist(plant)}>Add to Wishlist</button>}
                         <button onClick={() => this.handleDetails(plant)}>Details</button>
-                        {/* <Link className='fake-btn' to={`/detail/${plant.id}`}>Details</Link> */}
                       </div>
                     )
                 }
