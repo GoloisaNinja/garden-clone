@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-const URL = 'http://gainfulgarden.herokuapp.com';
+const URL = 'https://gainfulgarden.herokuapp.com';
 
 export async function signUpUser(name, email, password) {
   const response = await request
