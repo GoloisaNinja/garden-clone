@@ -15,8 +15,7 @@ export default class Search extends Component {
   state = {
     userWishlist: [],
     userGarden: [],
-    ediblePlants: [],
-    filteredPlants: [],
+    searchResults: [],
     searchPlantByName: '',
     lightFilter: '',
     ediblePartFilter: '',
@@ -34,7 +33,7 @@ export default class Search extends Component {
     this.setState({
       userGarden: garden,
       userWishlist: wishlist,
-      ediblePlants: edibleArray,
+      searchResults: edibleArray,
       loading: false,
     });
   };
@@ -43,26 +42,28 @@ export default class Search extends Component {
     this.setState({ searchPlantByName: e.target.value });
   };
   handleLightChange = (e) => {
-    this.setState({ lightFilter: e.target.value });
+    this.setState({ lightFilter: e.target.value, searchPlantByName: '' });
   };
   handleEdiblePartChange = (e) => {
-    this.setState({ ediblePartFilter: e.target.value });
+    this.setState({ ediblePartFilter: e.target.value, searchPlantByName: '' });
   };
   handleVeggieChange = (e) => {
-    this.setState({ veggieFilter: e.target.value });
+    this.setState({ veggieFilter: e.target.value, searchPlantByName: '' });
   };
 
   handleSubmitNameChange = async (e) => {
+    this.setState({ loading: true });
     e.preventDefault();
     const searchNameResults = await getNameSearch(
       this.props.user.token,
-      this.state.searchPlantByName
+      this.state.searchPlantByName,
     );
 
-    this.setState({ searchNameResults: searchNameResults });
+    this.setState({ searchResults: searchNameResults, loading: false });
   };
 
   handleFilterSubmit = async (e) => {
+    this.setState({ loading: true });
     e.preventDefault();
     const filteredPlantsResults = await getFilteredSearches(
       this.props.user.token,
@@ -71,7 +72,7 @@ export default class Search extends Component {
       this.state.lightFilter
     );
 
-    this.setState({ filteredPlants: filteredPlantsResults });
+    this.setState({ searchResults: filteredPlantsResults, loading: false });
   };
 
   // calling it plant.id here since the endpoints will use main_species_id on the back end (we tested to make sure it works)
@@ -112,7 +113,7 @@ export default class Search extends Component {
   render() {
     return (
       <div className='searchPage'>
-        <form>
+        <div className='searchSide'>
           <label>
             Search By Name
             <input
@@ -163,57 +164,57 @@ export default class Search extends Component {
           </label>
           <br />
           <button onClick={this.handleFilterSubmit}>Search Results</button>
-        </form>
+        </div>
         <div className='plantList'>
           {this.state.loading ? (
             <Spinner />
           ) : (
-            this.state.ediblePlants.map((plant, i) => (
-              <div key={`${plant.common_name}-${i}`} className='plantCard'>
-                <img src={plant.image_url} className='plantImage' alt='plant' />
-                <p className='plantName'>{plant.common_name}</p>
-                <p className='cardText'>{plant.family_common_name}</p>
-                <p className='cardText'>{plant.scientific_name}</p>
-                <div className='card-buttons'>
-                  {this.isInGarden(plant) ? (
-                    <img
-                      className='btn-no'
-                      src='/garden_icon_Y.png'
-                      alt='garden'
-                    />
-                  ) : (
-                    <img
-                      className='btn'
-                      onClick={() => this.handleAddToGarden(plant)}
-                      src='/garden_icon_N.png'
-                      alt='garden'
-                    />
-                  )}
-                  {this.isInWishlist(plant) ? (
-                    <img
-                      className='btn-no'
-                      disabled
-                      src='/wishlist_icon_Y.png'
-                      alt='wislist'
-                    />
-                  ) : (
-                    <img
-                      className='btn'
-                      onClick={() => this.handleAddToWishlist(plant)}
-                      src='/wishlist_icon_N.png'
-                      alt='wishlist'
-                    />
-                  )}
-                  <button
-                    className='detailBtn'
-                    onClick={() => this.handleDetails(plant)}
-                  >
-                    Details
+              this.state.searchResults.map((plant, i) => (
+                <div key={`${plant.common_name}-${i}`} className='plantCard'>
+                  <img src={plant.image_url} className='plantImage' alt='plant' />
+                  <p className='plantName'>{plant.common_name}</p>
+                  <p className='cardText'>{plant.family_common_name}</p>
+                  <p className='cardText'>{plant.scientific_name}</p>
+                  <div className='card-buttons'>
+                    {this.isInGarden(plant) ? (
+                      <img
+                        className='btn-no'
+                        src='/garden_icon_Y.png'
+                        alt='garden'
+                      />
+                    ) : (
+                        <img
+                          className='btn'
+                          onClick={() => this.handleAddToGarden(plant)}
+                          src='/garden_icon_N.png'
+                          alt='garden'
+                        />
+                      )}
+                    {this.isInWishlist(plant) ? (
+                      <img
+                        className='btn-no'
+                        disabled
+                        src='/wishlist_icon_Y.png'
+                        alt='wislist'
+                      />
+                    ) : (
+                        <img
+                          className='btn'
+                          onClick={() => this.handleAddToWishlist(plant)}
+                          src='/wishlist_icon_N.png'
+                          alt='wishlist'
+                        />
+                      )}
+                    <button
+                      className='detailBtn'
+                      onClick={() => this.handleDetails(plant)}
+                    >
+                      Details
                   </button>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
         </div>
       </div>
     );

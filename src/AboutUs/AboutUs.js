@@ -5,7 +5,7 @@ export default class AboutUs extends Component {
     render() {
         return (
             <div>
-                <h1>About Us</h1>
+                <h1>About the Gainful Team</h1>
                 <div className='bioCard'>
                     <img className='bio-pic-long' alt='Nicole' src='/bio-nicole.png' />
                     <p>Nicole (she/her) is a full stack software engineer located in Portland, OR. She enjoys working with computers and collaborating on fun and impactful projects that will help the planet, animals, and all humans. Also a huge fan of vegan food, coffee and being outside in the beautiful Pacific Northwest with her dog, Cooper. Her favorite part of gardening is getting to cook and eat all the tasty homegrown veggies!</p>
