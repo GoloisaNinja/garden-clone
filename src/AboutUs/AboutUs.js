@@ -27,8 +27,8 @@ export default class AboutUs extends Component {
                 <div className='bioCard'>                    
                 <img className='bio-pic' alt='Kat' src='/bio-kat.png' />
                     <p>Kat (they/them) bio</p>
-                    <a href=''>My Github</a>
-                    <a href=''>My LinkedIn</a>
+                    <a href='google.com'>My Github</a>
+                    <a href='google.com'>My LinkedIn</a>
                 </div>
             </div>
         )

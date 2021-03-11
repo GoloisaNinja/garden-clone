@@ -67,6 +67,15 @@ button{
     margin-top: auto;
 }
 
+.card-buttons-detail-only{
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: auto;
+}
+
 .plantName{
     color: #3b5a41;
     font-size: 22px;
