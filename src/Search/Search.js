@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Spinner from '../Components/Spinner';
 import {
   getEdibles,
   getFilteredSearches,
@@ -20,15 +21,22 @@ export default class Search extends Component {
     lightFilter: '',
     ediblePartFilter: '',
     veggieFilter: '',
+    loading: false,
   };
 
   componentDidMount = async () => {
+    this.setState({ loading: true });
     const edibleArray = await getEdibles(this.props.user.token);
 
     const wishlist = await getWishlist(this.props.user.token);
 
     const garden = await getGarden(this.props.user.token);
-    this.setState({ userGarden: garden, userWishlist: wishlist, ediblePlants: edibleArray });
+    this.setState({
+      userGarden: garden,
+      userWishlist: wishlist,
+      ediblePlants: edibleArray,
+      loading: false,
+    });
   };
 
   handleSearchNameChange = (e) => {
@@ -70,32 +78,36 @@ export default class Search extends Component {
   handleAddToGarden = async (plant) => {
     await addToGarden(this.props.user.token, plant.id, plant.common_name);
 
-    const garden = await getGarden(this.props.user.token)
-    this.setState({ userGarden: garden })
-  }
+    const garden = await getGarden(this.props.user.token);
+    this.setState({ userGarden: garden });
+  };
 
   handleAddToWishlist = async (plant) => {
     await addToWishlist(this.props.user.token, plant.id);
 
-    const wishlist = await getWishlist(this.props.user.token)
-    this.setState({ userWishlist: wishlist })
-  }
+    const wishlist = await getWishlist(this.props.user.token);
+    this.setState({ userWishlist: wishlist });
+  };
 
   handleDetails = (plant) => {
     this.props.history.push(`/detail/${plant.id}`);
-  }
+  };
 
   isInWishlist = (plant) => {
-    const inWishlist = this.state.userWishlist.find(wish => wish.main_species_id === plant.id);
+    const inWishlist = this.state.userWishlist.find(
+      (wish) => wish.main_species_id === plant.id
+    );
 
     return inWishlist;
-  }
+  };
 
   isInGarden = (plant) => {
-    const inGarden = this.state.userGarden.find(myPlant => myPlant.main_species_id === plant.id);
+    const inGarden = this.state.userGarden.find(
+      (myPlant) => myPlant.main_species_id === plant.id
+    );
 
     return inGarden;
-  }
+  };
 
   render() {
     return (
@@ -106,8 +118,11 @@ export default class Search extends Component {
             <input
               value={this.state.searchPlantByName}
               onChange={this.handleSearchNameChange}
-            /> <br />
-            <button onClick={this.handleSubmitNameChange}>Search!</button> <br /><br />
+            />{' '}
+            <br />
+            <button onClick={this.handleSubmitNameChange}>Search!</button>{' '}
+            <br />
+            <br />
           </label>
           <label>
             Check To See Only Vegetables
@@ -116,7 +131,9 @@ export default class Search extends Component {
               value='true'
               onChange={this.handleVeggieChange}
             />
-          </label><br /><br />
+          </label>
+          <br />
+          <br />
           <label>
             Search by Edible Part
             <select
@@ -128,7 +145,9 @@ export default class Search extends Component {
               <option value='leaves'>Leaves</option>
               <option value='flowers'>Flowers/Fruit</option>
             </select>
-          </label><br /><br />
+          </label>
+          <br />
+          <br />
           <label>
             Search by Light Level
             <select
@@ -141,31 +160,62 @@ export default class Search extends Component {
               <option value='8,9'>Moderate to Full Sun</option>
               <option value='9,10'>Full Sun</option>
             </select>
-          </label><br />
+          </label>
+          <br />
           <button onClick={this.handleFilterSubmit}>Search Results</button>
         </form>
         <div className='plantList'>
-          {
-            this.state.ediblePlants.map((plant, i) =>
-              <div key={`${plant.common_name}-${i}`} className="plantCard">
+          {this.state.loading ? (
+            <Spinner />
+          ) : (
+            this.state.ediblePlants.map((plant, i) => (
+              <div key={`${plant.common_name}-${i}`} className='plantCard'>
                 <img src={plant.image_url} className='plantImage' alt='plant' />
                 <p className='plantName'>{plant.common_name}</p>
                 <p className='cardText'>{plant.family_common_name}</p>
                 <p className='cardText'>{plant.scientific_name}</p>
                 <div className='card-buttons'>
-                  {this.isInGarden(plant)
-                    ? <img className='btn-no' src='/garden_icon_Y.png' alt='garden' />
-                    : <img className='btn' onClick={() => this.handleAddToGarden(plant)} src='/garden_icon_N.png' alt='garden' />}
-                  {this.isInWishlist(plant)
-                    ? <img className='btn-no' disabled src='/wishlist_icon_Y.png' alt='wislist' />
-                    : <img className='btn' onClick={() => this.handleAddToWishlist(plant)} src='/wishlist_icon_N.png' alt='wishlist' />}
-                  <button className='detailBtn' onClick={() => this.handleDetails(plant)}>Details</button>
+                  {this.isInGarden(plant) ? (
+                    <img
+                      className='btn-no'
+                      src='/garden_icon_Y.png'
+                      alt='garden'
+                    />
+                  ) : (
+                    <img
+                      className='btn'
+                      onClick={() => this.handleAddToGarden(plant)}
+                      src='/garden_icon_N.png'
+                      alt='garden'
+                    />
+                  )}
+                  {this.isInWishlist(plant) ? (
+                    <img
+                      className='btn-no'
+                      disabled
+                      src='/wishlist_icon_Y.png'
+                      alt='wislist'
+                    />
+                  ) : (
+                    <img
+                      className='btn'
+                      onClick={() => this.handleAddToWishlist(plant)}
+                      src='/wishlist_icon_N.png'
+                      alt='wishlist'
+                    />
+                  )}
+                  <button
+                    className='detailBtn'
+                    onClick={() => this.handleDetails(plant)}
+                  >
+                    Details
+                  </button>
                 </div>
               </div>
-            )
-          }
+            ))
+          )}
         </div>
       </div>
-    )
+    );
   }
 }
