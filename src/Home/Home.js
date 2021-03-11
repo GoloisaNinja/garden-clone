@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { signUpUser, loginUser } from '../Utils/ApiUtils.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Home extends Component {
     state = {
@@ -8,8 +10,8 @@ export default class Home extends Component {
         password: '',
         returningEmail: '',
         returningPassword: '',
-        error: '',
-        returnError: ''
+        // error: '',
+        // returnError: ''
     }
 
     handleNameChange = (e) => this.setState({ name: e.target.value })
@@ -22,6 +24,14 @@ export default class Home extends Component {
 
     handleReturnPasswordChange = (e) => this.setState({ returningPassword: e.target.value })
 
+    showToast = (msg) => {
+        toast(msg, {
+            className: 'toast',
+            bodyClassName: "toastBody",
+            progressClassName: 'fancy-progress-bar',
+        })
+      };
+
     handleSignUpSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -29,7 +39,8 @@ export default class Home extends Component {
             this.props.handleUserChange(user);
             this.props.history.push('/search');
         } catch {
-            this.setState({ error: `We couldn't find that garden plot, would you like to try again?` })
+            // this.setState({ error: `We couldn't find that garden plot, would you like to try again?` })
+            toast(`Are you sure that gardener doesn't already exist?`)
         }
     }
 
@@ -40,13 +51,26 @@ export default class Home extends Component {
             this.props.handleUserChange(user);
             this.props.history.push('/search');
         } catch {
-            this.setState({ error: 'Incorrect email or password' })
+            // this.setState({ error: 'Incorrect email or password' })
+            toast(`We couldn't find that garden plot, would you like to try again?`)
         }
     }
 
     render() {
+        
         return (
             <div>
+                <ToastContainer 
+                    position="top-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                 <h1>
                     There's no place like Home, Auntie Em.
                 </h1>

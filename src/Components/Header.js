@@ -10,19 +10,19 @@ export default class Header extends Component {
             <div className='header'>
                 <img className='main-logo' alt='GainfulGarden Logo' src='/GainfulGarden_mainLogo.png' />
                 <div className='link-list'>
-                    <NavLink className='header-link' to='/search'>
+                    <NavLink exact activeClassName="selected" className='header-link' to='/search'>
                         <HoverImage className='header-icon' alt='search icon' src='/search_header_icon.png' hoverSrc='/search_icon_Y.png' />
                         Search
                     </NavLink>
-                    <NavLink className='header-link' to='/my_garden'>
+                    <NavLink exact activeClassName="selected" className='header-link' to='/my_garden'>
                         <HoverImage className='header-icon' alt='search icon' src='/garden_header_icon.png' hoverSrc='/garden_icon_Y.png' />
                         My Garden
                     </NavLink>
-                    <NavLink className='header-link' to='/wishlist'>
+                    <NavLink exact activeClassName="selected" className='header-link' to='/wishlist'>
                         <HoverImage className='header-icon' alt='search icon' src='/wishlist_header_icon.png' hoverSrc='/wishlist_icon_Y.png' />
                         Wishlist
                     </NavLink>
-                    <NavLink className='header-link' to='/about_us'>
+                    <NavLink exact activeClassName="selected" className='header-link' to='/about_us'>
                         <HoverImage className='header-icon' alt='search icon' src='/about_header_icon.png' hoverSrc='/about_icon_Y.png' />
                         About Us
                     </NavLink>
