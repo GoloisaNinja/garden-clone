@@ -8,10 +8,10 @@ export default class Notes extends Component {
     notes: '',
   };
 
-  // componentDidMount = async () => {
-  //   const notesArray = await getNotes(this.props.token, this.props.plantId);
-  //   this.setState({ userNotes: notesArray });
-  // };
+  componentDidMount = async () => {
+    const notesArray = await getNotes(this.props.token, this.props.plantId);
+    this.setState({ userNotes: notesArray });
+  };
 
   handleDateChange = (e) => {
     this.setState({ date: e.target.value });
@@ -35,6 +35,7 @@ export default class Notes extends Component {
   };
 
   render() {
+    console.log(this.state.userNotes);
     return (
       <div>
         <form>
@@ -60,10 +61,12 @@ export default class Notes extends Component {
         </form>
         <div>
           {this.state.userNotes.map((note) => {
-            <div key={note.id}>
-              <p>{note.date}</p>
-              <p>{note.notes}</p>
-            </div>;
+            return (
+              <div key={note.id}>
+                <p>{note.date}</p>
+                <p>{note.note}</p>
+              </div>
+            );
           })}
         </div>
       </div>
