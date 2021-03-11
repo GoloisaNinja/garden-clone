@@ -106,6 +106,7 @@ export default class Detail extends Component {
   };
 
   render() {
+    console.log(this.state.plantId);
     return (
       <div>
         <h1>Plant Details</h1>
@@ -193,7 +194,9 @@ export default class Detail extends Component {
               )}
             </div>
           )}
-          <Notes token={this.props.user.token} plantId={this.state.plantId} />
+          {this.state.plantId && (
+            <Notes token={this.props.user.token} plantId={this.state.plantId} />
+          )}
         </div>
       </div>
     );
