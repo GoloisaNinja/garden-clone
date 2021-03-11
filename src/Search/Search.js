@@ -4,12 +4,12 @@ import {
   getEdibles,
   getFilteredSearches,
   getNameSearch,
-  //   getEdibles,
-  //   getWishlist,
-  //   getGarden,
-  //   deleteWishlistPlant,
-  //   deleteGardenPlant,
+    getWishlist,
+    getGarden,
+    addToGarden,
+    addToWishlist,
 } from '../Utils/ApiUtils.js';
+import '../plantList.css';
 
 export default class Search extends Component {
   state = {
@@ -23,10 +23,14 @@ export default class Search extends Component {
     veggieFilter: '',
   };
 
-  // componentDidMount = async () => {
-  //   const edibleArray = await getEdibles();
-  //   this.setState({ ediblePlants: edibleArray });
-  // };
+  componentDidMount = async () => {
+    const edibleArray = await getEdibles(this.props.user.token);
+
+    const wishlist = await getWishlist(this.props.user.token)
+
+    const garden = await getGarden(this.props.user.token)
+    this.setState({ userGarden: garden, userWishlist: wishlist, ediblePlants:edibleArray})
+  };
 
   handleSearchNameChange = (e) => {
     this.setState({ searchPlantByName: e.target.value });
@@ -62,6 +66,37 @@ export default class Search extends Component {
 
     this.setState({ filteredPlants: filteredPlantsResults });
   };
+
+  // calling it plant.id here since the endpoints will use main_species_id on the back end (we tested to make sure it works)
+  handleAddToGarden = async (plant) => {
+    await addToGarden(this.props.user.token, plant.id, plant.common_name);
+
+    const garden = getGarden(this.props.user.token)
+    this.setState({userGarden: garden})
+  }
+
+  handleAddToWishlist = async (plant) => {
+    await addToWishlist(this.props.user.token, plant.id);
+
+    const wishlist = await getWishlist(this.props.user.token)
+    this.setState({userWishlist: wishlist})
+  }
+
+  handleDetails = (plant) => {
+    this.props.history.push(`/detail/${plant.id}`);
+  }
+
+  isInWishlist = (plant) => {
+    const inWishlist = this.state.userWishlist.find(wish => wish.main_species_id === plant.id);
+
+    return inWishlist;
+  }
+
+  isInGarden = (plant) => {
+    const inGarden = this.state.userGarden.find(myPlant => myPlant.main_species_id === plant.id);
+
+    return inGarden;
+  }
 
   render() {
     return (
@@ -108,10 +143,29 @@ export default class Search extends Component {
           </select>
           <button onClick={this.handleFilterSubmit}>Search Results</button>
         </form>
-        <div>
+        <div className='plantList'>
           <Link to='/detail/:id'>Detail Page</Link>
-        </div>
-      </div>
-    );
+          Plants will show up here
+                {
+                    this.state.ediblePlants.map((plant, i) => 
+                      <div key={`${plant.common_name}-${i}`} className="plantCard">
+                        <img src={plant.image_url} className='plantImage' alt='plant' />
+                        <p>{plant.common_name}</p>
+                        <p>{plant.family_common_name}</p>
+                        <p>{plant.scientific_name}</p>
+                        {this.isInGarden(plant) 
+                          ? <p>'In your Garden!'</p> 
+                          : <button onClick={() => this.handleAddToGarden(plant)}>Add to Garden</button>}
+                        {this.isInWishlist(plant) 
+                          ? <p>'In your Wishlist!'</p> 
+                          : <button onClick={() => this.handleAddToWishlist(plant)}>Add to Wishlist</button>}
+                        <button onClick={() => this.handleDetails(plant)}>Details</button>
+                        {/* <Link className='fake-btn' to={`/detail/${plant.id}`}>Details</Link> */}
+                      </div>
+                    )
+                }
+          </div>
+      </div> 
+    )
   }
 }
