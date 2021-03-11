@@ -3,10 +3,10 @@ import {
   getEdibles,
   getFilteredSearches,
   getNameSearch,
-    getWishlist,
-    getGarden,
-    addToGarden,
-    addToWishlist,
+  getWishlist,
+  getGarden,
+  addToGarden,
+  addToWishlist,
 } from '../Utils/ApiUtils.js';
 import '../plantList.css';
 
@@ -28,7 +28,7 @@ export default class Search extends Component {
     const wishlist = await getWishlist(this.props.user.token);
 
     const garden = await getGarden(this.props.user.token);
-    this.setState({ userGarden: garden, userWishlist: wishlist, ediblePlants:edibleArray});
+    this.setState({ userGarden: garden, userWishlist: wishlist, ediblePlants: edibleArray });
   };
 
   handleSearchNameChange = (e) => {
@@ -71,14 +71,14 @@ export default class Search extends Component {
     await addToGarden(this.props.user.token, plant.id, plant.common_name);
 
     const garden = await getGarden(this.props.user.token)
-    this.setState({userGarden: garden})
+    this.setState({ userGarden: garden })
   }
 
   handleAddToWishlist = async (plant) => {
     await addToWishlist(this.props.user.token, plant.id);
 
     const wishlist = await getWishlist(this.props.user.token)
-    this.setState({userWishlist: wishlist})
+    this.setState({ userWishlist: wishlist })
   }
 
   handleDetails = (plant) => {
@@ -99,67 +99,73 @@ export default class Search extends Component {
 
   render() {
     return (
-      <div>
+      <div className='searchPage'>
         <form>
           <label>
             Search By Name
             <input
               value={this.state.searchPlantByName}
               onChange={this.handleSearchNameChange}
-            />
-            <button onClick={this.handleSubmitNameChange}>Search!</button>
+            /> <br />
+            <button onClick={this.handleSubmitNameChange}>Search!</button> <br /><br />
           </label>
           <label>
-            Vegetable
+            Check To See Only Vegetables
             <input
               type='checkbox'
               value='true'
               onChange={this.handleVeggieChange}
             />
-          </label>
-          <select
-            value={this.state.ediblePartFilter}
-            onChange={this.handleEdiblePartChange}
-          >
+          </label><br /><br />
+          <label>
             Search by Edible Part
-            <option value=''>Select</option>
-            <option value='roots'>Roots</option>
-            <option value='leaves'>Leaves</option>
-            <option value='flowers'>Flowers/Fruit</option>
-          </select>
-          <select
-            value={this.state.lightFilter}
-            onChange={this.handleLightChange}
-          >
+            <select
+              value={this.state.ediblePartFilter}
+              onChange={this.handleEdiblePartChange}
+            >
+              <option value=''>Select</option>
+              <option value='roots'>Roots</option>
+              <option value='leaves'>Leaves</option>
+              <option value='flowers'>Flowers/Fruit</option>
+            </select>
+          </label><br /><br />
+          <label>
             Search by Light Level
-            <option value=''>Select</option>
-            <option value='0,7'>Partial Shade</option>
-            <option value='7,8'>Partial Sun</option>
-            <option value='8,9'>Moderate to Full Sun</option>
-            <option value='9,10'>Full Sun</option>
-          </select>
+            <select
+              value={this.state.lightFilter}
+              onChange={this.handleLightChange}
+            >
+              <option value=''>Select</option>
+              <option value='0,7'>Partial Shade</option>
+              <option value='7,8'>Partial Sun</option>
+              <option value='8,9'>Moderate to Full Sun</option>
+              <option value='9,10'>Full Sun</option>
+            </select>
+          </label><br />
           <button onClick={this.handleFilterSubmit}>Search Results</button>
         </form>
         <div className='plantList'>
-                {
-                    this.state.ediblePlants.map((plant, i) => 
-                      <div key={`${plant.common_name}-${i}`} className="plantCard">
-                        <img src={plant.image_url} className='plantImage' alt='plant' />
-                        <p>{plant.common_name}</p>
-                        <p>{plant.family_common_name}</p>
-                        <p>{plant.scientific_name}</p>
-                        {this.isInGarden(plant) 
-                          ? <p>'In your Garden!'</p> 
-                          : <button onClick={() => this.handleAddToGarden(plant)}>Add to Garden</button>}
-                        {this.isInWishlist(plant) 
-                          ? <p>'In your Wishlist!'</p> 
-                          : <button onClick={() => this.handleAddToWishlist(plant)}>Add to Wishlist</button>}
-                        <button onClick={() => this.handleDetails(plant)}>Details</button>
-                      </div>
-                    )
-                }
-          </div>
-      </div> 
+          {
+            this.state.ediblePlants.map((plant, i) =>
+              <div key={`${plant.common_name}-${i}`} className="plantCard">
+                <img src={plant.image_url} className='plantImage' alt='plant' />
+                <p className='plantName'>{plant.common_name}</p>
+                <p className='cardText'>{plant.family_common_name}</p>
+                <p className='cardText'>{plant.scientific_name}</p>
+                <div className='card-buttons'>
+                  {this.isInGarden(plant)
+                    ? <img className='btn-no' src='/garden_icon_Y.png' alt='garden' />
+                    : <img className='btn' onClick={() => this.handleAddToGarden(plant)} src='/garden_icon_N.png' alt='garden' />}
+                  {this.isInWishlist(plant)
+                    ? <img className='btn-no' disabled src='/wishlist_icon_Y.png' alt='wislist' />
+                    : <img className='btn' onClick={() => this.handleAddToWishlist(plant)} src='/wishlist_icon_N.png' alt='wishlist' />}
+                  <button className='detailBtn' onClick={() => this.handleDetails(plant)}>Details</button>
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </div>
     )
   }
 }
