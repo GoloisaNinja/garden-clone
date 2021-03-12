@@ -20,7 +20,7 @@ export default class AboutUs extends Component {
                 </div>
                 <div className='bioCard'>
                     <img className='bio-pic' alt='KB' src='/bio-kb.jpg' />
-                    <p><strong>KB (she/her)</strong><br /> is a software engineer in the city of roses, Portland, OR. She loves to grow beets in her garden and dreams of the day her rosemary plant gets massive!</p>
+                    <p><strong>KB (she/her)</strong><br /> is a software engineer in the city of roses, Portland, OR. She spends her days playing video games or reading with her legion of snake plants. She grows beets and radishes in her garden and dreams of the day her rosemary bush gets massive!</p>
                     <br /><a href='https://github.com/katrinkajb'>My Github</a>
                     <br /><a href='https://www.linkedin.com/in/katy-boyles/'>My LinkedIn</a>
                 </div>
