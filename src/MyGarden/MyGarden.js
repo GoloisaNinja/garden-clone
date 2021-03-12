@@ -39,8 +39,8 @@ export default class MyGarden extends Component {
   render() {
     return (
       <div className='myGardenPage'>
+        <h1 className='center-title'>{this.props.user.name}'s Garden</h1>
         <div className='plantList'>
-          <h1>{this.props.user.name}'s Garden</h1>
           {this.state.loading ? (
             <Spinner />
           ) : (

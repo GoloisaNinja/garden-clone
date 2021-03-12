@@ -9,13 +9,13 @@ import '../plantList.css';
 
 // Had to make changes from search page to populate plant info on the page since the API offered different information from different endpoints
 export default class Wishlist extends Component {
-    state = {
-        userWishlist: [],
-        userGarden: [],
-        loading: false,
-        detailsWishlist: []
-      };
-    
+  state = {
+    userWishlist: [],
+    userGarden: [],
+    loading: false,
+    detailsWishlist: []
+  };
+
   componentDidMount = async () => {
     this.setState({ loading: true });
 
@@ -30,17 +30,17 @@ export default class Wishlist extends Component {
       loading: false,
       detailsWishlist: wishlistDetails
     });
-      };
-  
+  };
+
   handleDetails = (plant) => {
     this.props.history.push(`/detail/${plant.main_species_id}`);
   };
-    
+
   render() {
     return (
       <div className='wishlistPage'>
+        <h1 className='center-title'>{this.props.user.name}'s Wishlist</h1>
         <div className='plantList'>
-          <h1>{this.props.user.name}'s Wishlist</h1>
           {this.state.loading ? (
             <Spinner />
           ) : (
