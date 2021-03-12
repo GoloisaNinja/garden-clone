@@ -30,7 +30,7 @@ export default class Notes extends Component {
       this.state.notes
     );
     const allNotes = await getNotes(this.props.token, this.props.plantId);
-    this.setState({ userNotes: allNotes });
+    this.setState({ userNotes: allNotes, date: '', notes: '' });
   };
 
   render() {
@@ -46,7 +46,7 @@ export default class Notes extends Component {
             />
           </label>
           <label>
-            Notes:
+            Notes:< br />
             <textarea
               value={this.state.notes}
               onChange={this.handleNoteChange}
@@ -57,11 +57,12 @@ export default class Notes extends Component {
           </label>
           <button onClick={this.handleNoteSubmit}>Add to notes</button>
         </form>
+        < br />
         <div>
           {this.state.userNotes.map((note) => {
             return (
               <div key={note.id}>
-                <p>{note.date}</p>
+                <h4>{note.date}</h4>
                 <p>{note.note}</p>
               </div>
             );
