@@ -19,14 +19,14 @@ export default class AboutUs extends Component {
                     <a href='https://www.linkedin.com/in/katrinacloyd/'>My LinkedIn</a>
                 </div>
                 <div className='bioCard'>
-                    <img className='bio-pic-long' alt='KB' src='/bio-kb.jpg' />
+                    <img className='bio-pic' alt='KB' src='/bio-kb.jpg' />
                     <p>KB (she/her) is a software engineer in the city of roses, Portland, OR. She loves to grow beets in her garden and dreams of the day her rosemary plant gets massive!</p>
                     <a href='https://github.com/katrinkajb'>My Github</a>
                     <a href='https://www.linkedin.com/in/katy-boyles/'>My LinkedIn</a>
                 </div>
                 <div className='bioCard'>
-                    <img className='bio-pic' alt='Kat' src='/bio-kat.png' />
-                    <p>Kat (they/them) bio</p>
+                    <img className='bio-pic' alt='Kat' src='/bio-kat.jpg' />
+                    <p>Kat (they/them) is a dancer and choreographer turned software engineer. They have about 40 plants in their home and enjoy propagating plants for friends. Share the greens!</p>
                     <a href='https://github.com/kat-sauma'>My Github</a>
                     <a href='https://www.linkedin.com/in/kat-sauma/'>My LinkedIn</a>
                 </div>

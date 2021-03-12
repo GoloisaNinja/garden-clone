@@ -132,7 +132,6 @@ export default class Detail extends Component {
   };
 
   render() {
-    console.log(this.state.userWishlist);
     return (
       <div>
         <h1>Plant Details</h1>
@@ -140,96 +139,96 @@ export default class Detail extends Component {
           {this.state.loading ? (
             <Spinner />
           ) : (
-              <div>
-                <h2>{this.state.name}</h2>
-                <p>{this.state.familyName}</p>
-                <p>{this.state.scientificName}</p>
-                <img className='plantImage' src={this.state.image} alt='plant' />
-                {this.state.vegetable ? <p>This is a Vegetable</p> : ''}
-                {this.state.height ? (
-                  <p>Height: {this.state.height} centimeters</p>
-                ) : ('')}
-                {this.state.light ? (
-                  <p>Light Level: {this.findLightLevel(this.state.light)}</p>
-                ) : ('')}
-                {this.state.ediblePart ? (
-                  <p>You can eat the {this.state.ediblePart}</p>
-                ) : ('')}
+            <div>
+              <h2>{this.state.name}</h2>
+              <p>{this.state.familyName}</p>
+              <p>{this.state.scientificName}</p>
+              <img className='plantImage' src={this.state.image} alt='plant' />
+              {this.state.vegetable ? <p>This is a Vegetable</p> : ''}
+              {this.state.height ? (
+                <p>Height: {this.state.height} centimeters</p>
+              ) : ('')}
+              {this.state.light ? (
+                <p>Light Level: {this.findLightLevel(this.state.light)}</p>
+              ) : ('')}
+              {this.state.ediblePart ? (
+                <p>You can eat the {this.state.ediblePart}</p>
+              ) : ('')}
+              <p>
+                Soil Texture: {this.findSoilTexture(this.state.soilTexture)}
+              </p>
+              {this.state.minPrecipitation ? (
                 <p>
-                  Soil Texture: {this.findSoilTexture(this.state.soilTexture)}
-                </p>
-                {this.state.minPrecipitation ? (
-                  <p>
-                    Minimum Precipitation: {this.state.minPrecipitation} mm per
+                  Minimum Precipitation: {this.state.minPrecipitation} mm per
                   year
-                  </p>) : ('')}
-                {this.state.maxPrecipitation ? (
-                  <p>
-                    Maximum Precipitation: {this.state.maxPrecipitation} mm per
+                </p>) : ('')}
+              {this.state.maxPrecipitation ? (
+                <p>
+                  Maximum Precipitation: {this.state.maxPrecipitation} mm per
                   year
-                  </p>) : ('')}
-                <p>Additional Images </p>
-                {this.state.leafImage ? (
-                  <img
-                    className='plantImage'
-                    src={this.state.leafImage}
-                    alt='leaf'
-                  />) : ('')}
-                {this.state.flowerImage ? (
-                  <img
-                    className='plantImage'
-                    src={this.state.flowerImage}
-                    alt='flower'
-                  />) : ('')}
-                {this.state.fruitImage ? (
-                  <img
-                    className='plantImage'
-                    src={this.state.fruitImage}
-                    alt='fruit'
-                  />) : ('')}
-                {this.isInGarden(this.state.plantId) ? (
-                  <div> <h4>This plant is in your garden!</h4>
+                </p>) : ('')}
+              <p>Additional Images </p>
+              {this.state.leafImage ? (
+                <img
+                  className='plantImage'
+                  src={this.state.leafImage}
+                  alt='leaf'
+                />) : ('')}
+              {this.state.flowerImage ? (
+                <img
+                  className='plantImage'
+                  src={this.state.flowerImage}
+                  alt='flower'
+                />) : ('')}
+              {this.state.fruitImage ? (
+                <img
+                  className='plantImage'
+                  src={this.state.fruitImage}
+                  alt='fruit'
+                />) : ('')}
+              {this.isInGarden(this.state.plantId) ? (
+                <div> <h4>This plant is in your garden!</h4>
                   Click here to remove it from your Garden
-                    <img
-                      className='btn'
-                      onClick={() => this.handleDeleteFromGarden(this.isInGarden(this.state.plantId).id)}
-                      src='/garden_icon_Y.png'
-                      alt='garden'
-                    />
-                  </div>
-                ) : (
-                    <div>
-                      Add this plant to your garden?
-                      <img
-                        className='btn'
-                        onClick={this.handleAddToGarden}
-                        src='/garden_icon_N.png'
-                        alt='garden'
-                      />
-                    </div>
-                  )}
-                {this.isInWishlist(this.state.plantId) ? (
-                  <div><h4>You have this plant in your Wishlist!</h4>
+                  <img
+                    className='btn'
+                    onClick={() => this.handleDeleteFromGarden(this.isInGarden(this.state.plantId).id)}
+                    src='/garden_icon_Y.png'
+                    alt='garden'
+                  />
+                </div>
+              ) : (
+                <div>
+                  Add this plant to your garden?
+                  <img
+                    className='btn'
+                    onClick={this.handleAddToGarden}
+                    src='/garden_icon_N.png'
+                    alt='garden'
+                  />
+                </div>
+              )}
+              {this.isInWishlist(this.state.plantId) ? (
+                <div><h4>You have this plant in your Wishlist!</h4>
                     Click here to remove it from your Wishlist
-                    <img
-                      className='btn'
-                      onClick={() => this.handleDeleteFromWishlist(this.isInWishlist(this.state.plantId).id)}
-                      src='/wishlist_icon_Y.png'
-                      alt='wishlist'
-                    />
-                  </div>
-                ) : (
-                    <div>Add this plant to your wishlist?
-                      <img
-                        className='btn'
-                        onClick={this.handleAddToWishlist}
-                        src='/wishlist_icon_N.png'
-                        alt='wishlist'
-                      />
-                    </div>
-                  )}
-              </div>
-            )}
+                  <img
+                    className='btn'
+                    onClick={() => this.handleDeleteFromWishlist(this.isInWishlist(this.state.plantId).id)}
+                    src='/wishlist_icon_Y.png'
+                    alt='wishlist'
+                  />
+                </div>
+              ) : (
+                <div>Add this plant to your wishlist?
+                  <img
+                    className='btn'
+                    onClick={this.handleAddToWishlist}
+                    src='/wishlist_icon_N.png'
+                    alt='wishlist'
+                  />
+                </div>
+              )}
+            </div>
+          )}
           {this.state.plantId && (
             <Notes token={this.props.user.token} plantId={this.state.plantId} />
           )}
