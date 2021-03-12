@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# GainfulGarden
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Team members
 
-## Available Scripts
+    - Kat Sauma
+    - Katrina Cloyd
+    - Nicole Martin
+    - KB Boyles
 
-In the project directory, you can run:
+## Problem
 
-### `npm start`
+   - As a new gardener, it can be tough to know where to start when looking to grow your food. GainfulGarden gives these beginner gardeners an easy way to get started by allowing searching/filtering plants that will grow well in their environment, tracking plants they want to buy, and taking notes on plants they own to refer back to later.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   - GainfulGarden is a place for new gardeners to search for plants, get information about how to grow them, save them to a wishlist to buy later, and save them to their My Garden space to track with a journal.
 
-### `npm test`
+## Versions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   - v 1.0.0 App
 
-### `npm run build`
+## Libraries used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    1) react-toastify
+    2) react-hover-image
+    3) react-router-dom
+    4) superagent
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## To get GainfulGarden up and running on your computer
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    - npm i for dependencies
 
-### `npm run eject`
+## Endpoints
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Auth Endpoints
+  - /auth/signup
+  - /auth/signin
+- Search Endpoints
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - GET all edible plants (search page default) - /api/edible_search
+  - GET detailed information about a plant - /api/plant_detail/:id
+  - GET plants with any of these three filter options applied: vegetable=true, by edible part of plant (roots, leaves, or flowers/fruit), and light range (partial shade, partial sun, moderate to full sun, full sun) - /api/filtered_search
+  - GET all plants with search text in common, family, or scientific name - /api/name_search
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Wishlist Endpoints
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  - POST to add a plant to wishlist - /api/wishlist
+  - GET all plants in wishlist - /api/wishlist
+  - DELETE a plant from wishlist - /api/wishlist/:id
 
-## Learn More
+- My Garden Endpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - POST to add to my_garden - /api/my_garden
+  - GET all plants in my_garden - /api/my_garden
+  - DELETE a plant from my_garden - /api/my_garden/:id
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Notes Endpoints
+  - POST to notes /api/notes
+  - GET notes for a single plant - /api/notes/:id
 
-### Code Splitting
+## Database schema
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img width="671" alt="GainfulGardenSchema" src="https://user-images.githubusercontent.com/71411431/110901272-ec996000-82b8-11eb-8925-faf5691d4a62.png">

@@ -1,0 +1,58 @@
+.mainImage{
+    width: 600px;
+    border-radius: 5px;
+    border: solid 4px #f7f8f4;
+}
+
+.mainDetails{
+    padding: 10px;
+    width: 620px;
+    background-color: #e3e5dc;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+h4{
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+p{
+    margin: 5px 0px 5px 5px;
+}
+
+.main{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.detailImages{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.detailHeader{
+    text-align: center;
+}
+
+.notesSection{
+    background-color: #f7f8f4;
+    width: 350px;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+input, .note {
+    width: 320px;
+    padding: 10px;
+    border: #ddd 1px solid;
+    border-radius: 5px;
+  }
+
+.note {
+    height: 100px;
+}

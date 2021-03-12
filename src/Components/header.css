@@ -1,0 +1,35 @@
+.header{
+    background-color: #f7f8f4;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-logo{
+    width: 450px;
+}
+
+a{
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #598257;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: font-weight .5s ease-out;
+}
+
+a:hover{
+    font-weight: 600;
+}
+
+.link-list{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+}
+.header-link{
+    display: flex;
+    align-items: center;
+}
+.header-icon{
+    width: 40px;
+}
