@@ -170,7 +170,7 @@ export default class Search extends Component {
           ) : (
               this.state.searchResults.map((plant, i) => (
                 <div key={`${plant.common_name}-${i}`} className='plantCard'>
-                  <img src={plant.image_url} className='plantImage' alt='plant' />
+                  {plant.image_url ? <img src={plant.image_url} className='plantImage' alt='plant' /> : <img src='/noImage.png' className='plantImage' alt='plant' />}
                   <p className='plantName'>{plant.common_name}</p>
                   <p className='cardText'>{plant.family_common_name}</p>
                   <p className='cardText'>{plant.scientific_name}</p>
