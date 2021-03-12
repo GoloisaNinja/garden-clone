@@ -113,6 +113,12 @@ select:focus{
     width: 400px;
 }
 
+.center-title {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
 .nameSearch{
     width: 180px;
 }

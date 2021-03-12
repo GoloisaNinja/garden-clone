@@ -39,8 +39,7 @@ export default class Wishlist extends Component {
   render() {
     return (
       <div className='wishlistPage'>
-
-        <h1>{this.props.user.name}'s Wishlist</h1>
+        <h1 className='center-title'>{this.props.user.name}'s Wishlist</h1>
         <div className='plantList'>
           {this.state.loading ? (
             <Spinner />
