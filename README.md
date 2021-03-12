@@ -26,6 +26,21 @@
     - npm i for dependencies
 
 # Clearly defined API endpoints with sample responses
+    - /auth/signup
+    - /auth/signin
+    - GET Endpoint notes for a single plant - /api/notes/:id
+    - GET Endpoint all plants in my_garden - /api/my_garden
+    - GET Endpoint wishlist page - /api/wishlist
+    - POST Endpoint to add to wishlist - /api/wishlist
+    - POST Endpoint to add to my_garden - /api/my_garden
+    - POST to notes /api/notes
+    - DELETE endpoint to remove a plant from my_garden - /api/my_garden/:id
+    - DELETE endpoint to remove a plant from wishlist - /api/wishlist/:id
+    - GET all edible plants filtered, search page default on mount - /api/edible_search
+    - GET detailed information when clicking on a single plant - /api/plant_detail/:id
+    - GET three filter options on search page, part of plant, is it a veg?, light range - /api/filtered_search
+    - GET (input field) searching by common, family, or scientific name of entire API-- on search page - /api/name_search
+
 
 
 # Clearly defined database schemas

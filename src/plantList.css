@@ -55,7 +55,6 @@ button{
     border: solid 1px #cdd5bf;
     height: 50px;
     box-shadow: 2px 2px 4px #cdd5bf;
-
 }
 
 .card-buttons{
@@ -64,6 +63,15 @@ button{
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
+    margin-top: auto;
+}
+
+.card-buttons-detail-only{
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
     margin-top: auto;
 }
 
