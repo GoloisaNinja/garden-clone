@@ -23,19 +23,17 @@ export default class Notes extends Component {
 
   handleNoteSubmit = async (e) => {
     e.preventDefault();
-    const newNote = await addNotes(
+    await addNotes(
       this.props.token,
       this.props.plantId,
       this.state.date,
       this.state.notes
     );
-    console.log(newNote);
     const allNotes = await getNotes(this.props.token, this.props.plantId);
     this.setState({ userNotes: allNotes });
   };
 
   render() {
-    console.log(this.state.userNotes);
     return (
       <div>
         <form>
