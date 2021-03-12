@@ -41,12 +41,6 @@ export async function getFilteredSearches(token, part, vegetable, light) {
   return response.body.data;
 }
 
-export async function getAllPlantInfo(plantArray, token) {
-  const response = await Promise.all(plantArray.map(plant => getPlantDetails(token, plant.main_species_id)));
-
-  return response;
-};
-
 export async function addToWishlist(token, main_species_id) {
   const response = await request
     .post(`${URL}/api/wishlist`)
@@ -96,6 +90,13 @@ export async function deleteGardenPlant(token, plantId) {
 
   return response.body;
 }
+
+// Map through the every plant in the wishlist or garden and call the endpoint to get the needed info for each plant on the page
+export async function getAllPlantInfo(plantArray, token) {
+  const response = await Promise.all(plantArray.map(plant => getPlantDetails(token, plant.main_species_id)));
+
+  return response;
+};
 
 export async function getPlantDetails(token, main_species_id) {
   const response = await request

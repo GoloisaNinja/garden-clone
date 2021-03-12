@@ -7,6 +7,7 @@ import {
 } from '../Utils/ApiUtils.js';
 import '../plantList.css';
 
+// Had to make changes from search page to populate plant info on the page since the API offered different information from different endpoints
 export default class Wishlist extends Component {
     state = {
         userWishlist: [],
@@ -19,9 +20,8 @@ export default class Wishlist extends Component {
     this.setState({ loading: true });
 
     const wishlist = await getWishlist(this.props.user.token);
-
     const garden = await getGarden(this.props.user.token);
-
+    // Wrote a new function in ApiUtils to get the data needed to display the plants on the page
     const wishlistDetails = await getAllPlantInfo(wishlist, this.props.user.token);
 
     this.setState({
@@ -40,10 +40,11 @@ export default class Wishlist extends Component {
     return (
       <div className='wishlistPage'>
         <div className='plantList'>
-          <h1>My Wishlist</h1>
+          <h1>{this.props.user.name}'s Wishlist</h1>
           {this.state.loading ? (
             <Spinner />
           ) : (
+            // pull from the wishlist-specific info to display data on page
             this.state.detailsWishlist.map((plant, i) => (
               <div key={`${plant.common_name}-${i}`} className='plantCard'>
                 <img src={plant.image_url} className='plantImage' alt='plant' />

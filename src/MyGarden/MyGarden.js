@@ -40,7 +40,7 @@ export default class MyGarden extends Component {
     return (
       <div className='myGardenPage'>
         <div className='plantList'>
-          <h1>My Garden</h1>
+          <h1>{this.props.user.name}'s Garden</h1>
           {this.state.loading ? (
             <Spinner />
           ) : (
