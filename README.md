@@ -25,27 +25,27 @@
     - npm i for dependencies
 
 ## Endpoints
-<!-- Auth Endpoints -->
+Auth Endpoints
     - /auth/signup
     - /auth/signin
     
-<!-- Search Endpoints -->
+Search Endpoints
     - GET all edible plants (search page default) - /api/edible_search
     - GET detailed information about a plant - /api/plant_detail/:id
     - GET plants with any of these three filter options applied: vegetable=true, by edible part of plant (roots, leaves, or flowers/fruit), and light range (partial shade, partial sun, moderate to full sun, full sun) - /api/filtered_search
     - GET all plants with search text in common, family, or scientific name - /api/name_search
 
-<!-- Wishlist Endpoints -->
+Wishlist Endpoints
     - POST to add a plant to wishlist - /api/wishlist
     - GET all plants in wishlist - /api/wishlist
     - DELETE a plant from wishlist - /api/wishlist/:id
 
-<!-- My Garden Endpoints -->
+My Garden Endpoints
     - POST to add to my_garden - /api/my_garden
     - GET all plants in my_garden - /api/my_garden
     - DELETE a plant from my_garden - /api/my_garden/:id
 
-<!-- Notes Endpoints -->
+Notes Endpoints
     - POST to notes /api/notes
     - GET notes for a single plant - /api/notes/:id
 
