@@ -88,7 +88,7 @@ export default class Detail extends Component {
       return 'gritty mixture of sandy loam';
     } else if (soil >= 6 && soil <= 7) {
       return 'smooth like flour mixed loam and silt';
-    } else return 'gritty mixture of clay and laom';
+    } else return 'gritty mixture of clay and loam';
   };
 
   isInWishlist = (plant) => {
