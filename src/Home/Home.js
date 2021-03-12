@@ -10,8 +10,6 @@ export default class Home extends Component {
         password: '',
         returningEmail: '',
         returningPassword: '',
-        // error: '',
-        // returnError: ''
     }
 
     handleNameChange = (e) => this.setState({ name: e.target.value })
@@ -39,7 +37,6 @@ export default class Home extends Component {
             this.props.handleUserChange(user);
             this.props.history.push('/search');
         } catch {
-            // this.setState({ error: `We couldn't find that garden plot, would you like to try again?` })
             toast(`Are you sure that gardener doesn't already exist?`)
         }
     }
@@ -51,7 +48,6 @@ export default class Home extends Component {
             this.props.handleUserChange(user);
             this.props.history.push('/search');
         } catch {
-            // this.setState({ error: 'Incorrect email or password' })
             toast(`We couldn't find that garden plot, would you like to try again?`)
         }
     }

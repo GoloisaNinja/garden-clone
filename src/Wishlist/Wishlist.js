@@ -40,6 +40,7 @@ export default class Wishlist extends Component {
     return (
       <div className='wishlistPage'>
         <div className='plantList'>
+          <h1>My Wishlist</h1>
           {this.state.loading ? (
             <Spinner />
           ) : (
