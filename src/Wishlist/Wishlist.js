@@ -44,24 +44,24 @@ export default class Wishlist extends Component {
           {this.state.loading ? (
             <Spinner />
           ) : (
-            // pull from the wishlist-specific info to display data on page
-            this.state.detailsWishlist.map((plant, i) => (
-              <div key={`${plant.common_name}-${i}`} className='plantCard'>
-                <img src={plant.image_url} className='plantImage' alt='plant' />
-                <p className='plantName'>{plant.common_name}</p>
-                <p className='cardText'>{plant.family_common_name}</p>
-                <p className='cardText'>{plant.scientific_name}</p>
-                <div className='card-buttons-detail-only'>
-                  <button
-                    className='detailBtn'
-                    onClick={() => this.handleDetails(plant)}
-                  >
-                    Details
+              // pull from the wishlist-specific info to display data on page
+              this.state.detailsWishlist.map((plant, i) => (
+                <div key={`${plant.common_name}-${i}`} className='plantCard'>
+                  <img src={plant.image_url} className='plantImage' alt='plant' />
+                  <p className='plantName'>{plant.common_name}</p>
+                  <p className='cardText'>{plant.family_common_name}</p>
+                  <p className='cardText'>{plant.scientific_name}</p>
+                  <div className='card-buttons-detail-only'>
+                    <button
+                      className='detailBtn'
+                      onClick={() => this.handleDetails(plant)}
+                    >
+                      Details
                   </button>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
         </div>
       </div>
     );
