@@ -1,7 +1,7 @@
 export const USER = 'user';
 
 export function getUserFromLocalStorage() {
-    const user = localStorage.getItem(USER);
+    let user = localStorage.getItem(USER);
 
     if (user) return JSON.parse(user);
 
@@ -11,6 +11,7 @@ export function getUserFromLocalStorage() {
         id: '',
         token: ''
     }
+
 }
 
 export function setUserInLocalStorage(user) {
