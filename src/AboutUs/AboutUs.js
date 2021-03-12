@@ -5,6 +5,7 @@ import './AboutUs.css';
 
 export default class AboutUs extends Component {
 
+
   render() {
     return (
       <div className='about-us-page'>
@@ -34,7 +35,7 @@ export default class AboutUs extends Component {
           <img className='bio-pic' alt='Katrina' src='/bio-katrina.jpg' />
           <p>
             <strong>Katrina (she/her)</strong> <br /> is a full stack software
-            engineer in Portland, transplanted from Ohio, and setting growing
+            engineer in Portland, transplanted from Ohio, and setting
             strong roots. She enjoys coding, design, painting, and gardening.
             She most recently planted sunflower seeds with her two girls and
             they have been having a great time watching them sprout!
@@ -85,5 +86,7 @@ export default class AboutUs extends Component {
       </div>
     );
   }
+
+
 
 }
