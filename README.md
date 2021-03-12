@@ -1,46 +1,53 @@
-# The name of the project: 
-    GainfulGarden
+![db Schema](https://user-images.githubusercontent.com/74560886/110891394-bf43b680-82a6-11eb-8203-e1cdfbfd82a3.png)
+# GainfulGarden
 
-# Names of the team members
+## Team members
     - Kat Sauma
     - Katrina Cloyd
     - Nicole Martin
     - KB Boyles
 
-# A description of the project
-    GainfulGarden is a place for new gardeners to search for plants, get information about how to grow them, save them to a wishlist to buy later, and save them to their My Garden space to track with a journal.
-
-# The overall problem domain and how the project solves those problems
+## Problem
     As a new gardener, it can be tough to know where to start when looking to grow your food. GainfulGarden gives these beginner gardeners an easy way to get started by allowing searching/filtering plants that will grow well in their environment, tracking plants they want to buy, and taking notes on plants they own to refer back to later.
 
-# Semantic versioning, beginning with version 1.0.0 and incremented as changes are made
-    
+## Project
+    GainfulGarden is a place for new gardeners to search for plants, get information about how to grow them, save them to a wishlist to buy later, and save them to their My Garden space to track with a journal.
 
+## Versions
+    v 1.0.0 App
 
-# A list of any libraries, frameworks, or packages that your application requires in order to properly function
+## Libraries used
     1) react-toastify
-    2) 
-    3) 
+    2) react-hover-image
+    3) react-router-dom
+    4) superagent
 
-# Instructions that the user may need to follow in order to get your application up and running on their own computer
+## To get GainfulGarden up and running on your computer
     - npm i for dependencies
 
-# Clearly defined API endpoints with sample responses
+## Endpoints
+<!-- Auth Endpoints -->
     - /auth/signup
     - /auth/signin
-    - GET Endpoint notes for a single plant - /api/notes/:id
-    - GET Endpoint all plants in my_garden - /api/my_garden
-    - GET Endpoint wishlist page - /api/wishlist
-    - POST Endpoint to add to wishlist - /api/wishlist
-    - POST Endpoint to add to my_garden - /api/my_garden
+    
+<!-- Search Endpoints -->
+    - GET all edible plants (search page default) - /api/edible_search
+    - GET detailed information about a plant - /api/plant_detail/:id
+    - GET plants with any of these three filter options applied: vegetable=true, by edible part of plant (roots, leaves, or flowers/fruit), and light range (partial shade, partial sun, moderate to full sun, full sun) - /api/filtered_search
+    - GET all plants with search text in common, family, or scientific name - /api/name_search
+
+<!-- Wishlist Endpoints -->
+    - POST to add a plant to wishlist - /api/wishlist
+    - GET all plants in wishlist - /api/wishlist
+    - DELETE a plant from wishlist - /api/wishlist/:id
+
+<!-- My Garden Endpoints -->
+    - POST to add to my_garden - /api/my_garden
+    - GET all plants in my_garden - /api/my_garden
+    - DELETE a plant from my_garden - /api/my_garden/:id
+
+<!-- Notes Endpoints -->
     - POST to notes /api/notes
-    - DELETE endpoint to remove a plant from my_garden - /api/my_garden/:id
-    - DELETE endpoint to remove a plant from wishlist - /api/wishlist/:id
-    - GET all edible plants filtered, search page default on mount - /api/edible_search
-    - GET detailed information when clicking on a single plant - /api/plant_detail/:id
-    - GET three filter options on search page, part of plant, is it a veg?, light range - /api/filtered_search
-    - GET (input field) searching by common, family, or scientific name of entire API-- on search page - /api/name_search
+    - GET notes for a single plant - /api/notes/:id
 
-
-
-# Clearly defined database schemas
+## Database schema
