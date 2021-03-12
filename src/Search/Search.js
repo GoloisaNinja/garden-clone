@@ -56,7 +56,7 @@ export default class Search extends Component {
     e.preventDefault();
     const searchNameResults = await getNameSearch(
       this.props.user.token,
-      this.state.searchPlantByName,
+      this.state.searchPlantByName
     );
 
     this.setState({ searchResults: searchNameResults, loading: false });
@@ -209,11 +209,12 @@ export default class Search extends Component {
                       onClick={() => this.handleDetails(plant)}
                     >
                       Details
+
                   </button>
-                  </div>
                 </div>
-              ))
-            )}
+              </div>
+            ))
+          )}
         </div>
       </div>
     );
