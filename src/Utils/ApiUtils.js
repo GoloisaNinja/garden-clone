@@ -34,18 +34,18 @@ export async function getNameSearch(token, search_name) {
 }
 
 export async function getFilteredSearches(token, part, vegetable, light) {
-    const response = await request
-        .get(`${URL}/api/filtered_search?part=${part}&vegetable=${vegetable}&light=${light}`)
-        .set('Authorization', token)
+  const response = await request
+    .get(`${URL}/api/filtered_search?part=${part}&vegetable=${vegetable}&light=${light}`)
+    .set('Authorization', token)
 
-    return response.body.data;
+  return response.body.data;
 }
 
 export async function getAllPlantInfo(plantArray, token) {
-  const response = await Promise.all( plantArray.map(plant => getPlantDetails(token, plant.main_species_id)));
+  const response = await Promise.all(plantArray.map(plant => getPlantDetails(token, plant.main_species_id)));
 
   return response;
-  };
+};
 
 export async function addToWishlist(token, main_species_id) {
   const response = await request
@@ -57,9 +57,9 @@ export async function addToWishlist(token, main_species_id) {
 }
 
 export async function getWishlist(token) {
-    const response = await request
-        .get(`${URL}/api/wishlist`)
-        .set('Authorization', token)
+  const response = await request
+    .get(`${URL}/api/wishlist`)
+    .set('Authorization', token)
 
   return response.body;
 }
@@ -73,10 +73,10 @@ export async function deleteWishlistPlant(token, plantId) {
 }
 
 export async function addToGarden(token, main_species_id, plant_name) {
-    const response = await request
-        .post(`${URL}/api/my_garden`)
-        .send({ main_species_id, plant_name })
-        .set('Authorization', token)
+  const response = await request
+    .post(`${URL}/api/my_garden`)
+    .send({ main_species_id, plant_name })
+    .set('Authorization', token)
 
   return response.body;
 }
@@ -115,7 +115,6 @@ export async function addNotes(token, main_species_id, date, note) {
 }
 
 export async function getNotes(token, id) {
-  console.log(id);
   const response = await request
     .get(`${URL}/api/notes/${id}`)
     .set('Authorization', token);
