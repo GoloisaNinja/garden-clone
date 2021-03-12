@@ -1,3 +1,4 @@
+![db Schema](https://user-images.githubusercontent.com/74560886/110891394-bf43b680-82a6-11eb-8203-e1cdfbfd82a3.png)
 # GainfulGarden
 
 ## Team members
