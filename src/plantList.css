@@ -92,11 +92,39 @@ input{
     border-radius: 4px;
 }
 
+input:focus{
+    outline: none;
+}
+
+button:focus{
+    outline: none;
+}
+
+select:focus{
+    outline: none;
+}
+
 .spinner{
     width: 150px;
     height: 150px;
 }
 
 .searchSide{
-    width: 600px;
+    width: 400px;
+}
+
+.nameSearch{
+    width: 180px;
+}
+
+select{
+    border: #ddd 1px solid;
+    border-radius: 5px;
+    color: #3b5a41;
+    padding: 4px;
+}
+
+#vegBox{
+    align-self: flex-start;
+    width: 50px;
 }

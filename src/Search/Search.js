@@ -115,7 +115,7 @@ export default class Search extends Component {
         <div className='searchSide'>
           <label>
             Search By Name
-            <input
+            <input className='nameSearch'
               value={this.state.searchPlantByName}
               onChange={this.handleSearchNameChange}
             />{' '}
@@ -129,13 +129,14 @@ export default class Search extends Component {
             <input
               type='checkbox'
               value='true'
+              id='vegBox'
               onChange={this.handleVeggieChange}
             />
           </label>
           <br />
           <br />
           <label>
-            Search by Edible Part
+            Search by Edible Part<br />
             <select
               value={this.state.ediblePartFilter}
               onChange={this.handleEdiblePartChange}
@@ -149,7 +150,7 @@ export default class Search extends Component {
           <br />
           <br />
           <label>
-            Search by Light Level
+            Search by Light Level<br />
             <select
               value={this.state.lightFilter}
               onChange={this.handleLightChange}
@@ -211,10 +212,10 @@ export default class Search extends Component {
                       Details
 
                   </button>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
         </div>
       </div>
     );
