@@ -4,6 +4,7 @@ import Linkedin from '../img/linkedin.png';
 import './AboutUs.css';
 
 export default class AboutUs extends Component {
+
   render() {
     return (
       <div className='about-us-page'>
@@ -84,4 +85,5 @@ export default class AboutUs extends Component {
       </div>
     );
   }
+
 }
