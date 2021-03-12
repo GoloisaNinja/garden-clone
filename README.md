@@ -9,15 +9,15 @@
 
 ## Problem
 
-    As a new gardener, it can be tough to know where to start when looking to grow your food. GainfulGarden gives these beginner gardeners an easy way to get started by allowing searching/filtering plants that will grow well in their environment, tracking plants they want to buy, and taking notes on plants they own to refer back to later.
+   - As a new gardener, it can be tough to know where to start when looking to grow your food. GainfulGarden gives these beginner gardeners an easy way to get started by allowing searching/filtering plants that will grow well in their environment, tracking plants they want to buy, and taking notes on plants they own to refer back to later.
 
 ## Project
 
-    GainfulGarden is a place for new gardeners to search for plants, get information about how to grow them, save them to a wishlist to buy later, and save them to their My Garden space to track with a journal.
+   - GainfulGarden is a place for new gardeners to search for plants, get information about how to grow them, save them to a wishlist to buy later, and save them to their My Garden space to track with a journal.
 
 ## Versions
 
-    v 1.0.0 App
+   - v 1.0.0 App
 
 ## Libraries used
 
