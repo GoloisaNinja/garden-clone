@@ -49,6 +49,7 @@
 		margin: 0 auto;
 		writing-mode: horizontal-tb;
 		text-orientation: unset;
+		text-align: center;
 	}
 	.about-us-page {
 		grid-template-areas:
@@ -64,6 +65,7 @@
 		margin: 0 auto;
 		writing-mode: horizontal-tb;
 		text-orientation: unset;
+		text-align: center;
 	}
 	.about-us-page {
 		grid-template-areas:
