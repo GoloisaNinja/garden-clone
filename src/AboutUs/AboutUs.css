@@ -1,22 +1,86 @@
 .bio-pic {
-    height: 200px;
-    border-radius: 100%;
-    border-left: 5px solid #cdd5bf;
-    margin-bottom: 25px;
+	max-width: 300px;
+	border-radius: 100%;
+	border-left: 5px solid #cdd5bf;
+	margin-bottom: 25px;
 }
 
 .bioCard {
-    height: 100px;
-    width: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	width: 80%;
+	margin: 0 auto;
 }
 .about-us-page {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 100px;
+	display: grid;
+	grid-template-areas: 'one two three four five';
+	grid-gap: 1em;
+	margin-top: 1.5em;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+.Nicole {
+	grid-area: two;
+}
+.Katrina {
+	grid-area: three;
+}
+.KB {
+	grid-area: four;
+}
+.Kat {
+	grid-area: five;
+}
+.flex-bios {
+	display: flex;
+	width: 100%;
 }
 
 .title {
-    writing-mode: vertical-lr;
-    text-orientation: upright;
+	grid-area: one;
+	writing-mode: vertical-lr;
+	text-orientation: upright;
+	max-height: 500px;
+}
+@media (max-width: 767px) {
+	.title {
+		margin: 0 auto;
+		writing-mode: horizontal-tb;
+		text-orientation: unset;
+	}
+	.about-us-page {
+		grid-template-areas:
+			'one'
+			'two'
+			'three'
+			'four'
+			'five';
+	}
+}
+@media (min-width: 768px) {
+	.title {
+		margin: 0 auto;
+		writing-mode: horizontal-tb;
+		text-orientation: unset;
+	}
+	.about-us-page {
+		grid-template-areas:
+			'one one'
+			'two three'
+			'four five';
+	}
+}
+@media (min-width: 1024px) {
+	.bio-pic {
+		max-width: 200px;
+	}
+	.about-us-page {
+		grid-template-areas: 'one two three four five';
+	}
+	.title {
+		writing-mode: vertical-lr;
+		text-orientation: upright;
+	}
 }
